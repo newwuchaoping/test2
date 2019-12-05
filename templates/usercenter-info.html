@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <head>
+	<title>个人中心</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta tag Keywords -->
+
+	<!-- Custom-Files -->
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="/static/css/style2.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //Custom-Files -->
+
+	<!-- Web-Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+	 rel="stylesheet">
+	<!-- //Web-Fonts -->
+</head>
+</head>
+<body>
+<!-- main banner -->
+	<div class="main-top" id="home">
+		<!-- header -->
+		<header>
+			<div class="container-fluid">
+				<div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
+					<!-- logo -->
+					<div id="logo">
+						<h1><a href="index.html"><span class="fa fa-linode mr-2"></span>Learning analysis</a></h1>
+					</div>
+					<!-- //logo -->
+					<!-- nav -->
+					<div class="nav_w3ls">
+						<nav>
+							<label for="drop" class="toggle">Menu</label>
+							<input type="checkbox" id="drop" />
+							<ul class="menu">
+								<li><a href="{% url 'index' %}" >首页</a></li>
+								<li><a href="{% url 'user_center' %}"class="active">个人中心</a></li>
+                                <li><a href="/paperlist/">试卷列表</a></li>
+								<li>
+									<!-- First Tier Drop Down -->
+									<label for="drop-2" class="toggle toogle-2">错题分析<span class="fa fa-angle-down" aria-hidden="true"></span>
+									</label>
+									<a href="#">错题分析<span class="fa fa-angle-down" aria-hidden="true"></span></a>
+									<input type="checkbox" id="drop-2" />
+									<ul>
+										<li><a href="#services" class="drop-text">错题库</a></li>
+										<li><a href="/animation/" class="drop-text">资源推荐</a></li>
+										<li><a href="404.html" class="drop-text">温故知新</a></li>
+										<li><a href="#stats" class="drop-text">阶段测试</a></li>
+									</ul>
+								</li>
+								<li><a href="{% url 'history' %}">历史成绩</a></li>
+							</ul>
+						</nav>
+					</div>
+					<!-- //nav -->
+					<div class="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
+						<!-- search -->
+						<div class="search-w3layouts mr-3">
+							<form action="#" method="post" class="search-bottom-wthree d-flex">
+								<input class="search" type="search" placeholder="Search Here..." required="">
+								<button class="form-control btn" type="submit"><span class="fa fa-search"></span></button>
+							</form>
+						</div>
+						<!-- //search -->
+						<!-- download -->
+						<a class="dwn-w3ls btn" href="" target="_blank">
+							<span class="fa fa-cloud-download"></span>
+						</a>
+						<!-- //download -->
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- //header -->
+
+                <li class="text-sty-banner" style="list-style-type:none;">
+                                      欢    迎,{{ user.nickname  }}
+            </li>
+		<!-- banner -->
+		<div class="banner_w3lspvt position-relative">
+			<div class="container">
+				<div class="d-md-flex">
+					<div class="w3ls_banner_txt">
+                        <h3 class="w3ls_pvt-title">个人中心<br><span>PersonalCenter</span></h3>
+                        <br>
+                        <form class="form-register"  method="post">
+                            {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                                {% endif %}
+                        {% csrf_token %}
+                        <div class="form-group">
+                    {{ Edit_FormInput.nick_name.label_tag }}
+                    {{ Edit_FormInput.nick_name }}
+                         </div>
+                    <div class="form-group">
+                    {{ Edit_FormInput.birthday.label_tag }}
+                    {{ Edit_FormInput.birthday }}
+                    </div>
+                    <div class="form-group">
+                    {{ Edit_FormInput.gender.label_tag }}
+                    {{ Edit_FormInput.gender }}
+                    </div>
+                    <div class="form-group">
+                   {{ Edit_FormInput.leibie.label_tag }}
+                  {{ Edit_FormInput.leibie }}
+                    </div>
+                    <div class="form-group">
+                    {{ Edit_FormInput.danwei.label_tag }}
+                    {{ Edit_FormInput.danwei }}
+                    </div>
+                    <div class="form-group">
+                    {{ Edit_FormInput.nianji.label_tag }}
+                    {{ Edit_FormInput.nianji }}
+                     </div>
+               {#<button type="reset" class="btn button-style col-lg-pull-0">重置</button>#}
+                         <div id="box3">
+                <button type="submit" class="btn button-style  " >提交</button>
+                        </div>
+            </form>
+
+					</div>
+                    <div class="banner-img">
+						<img src="/static/images/banner.png" alt="" class="img-fluid">
+					</div>
+				</div>
+			</div>
+        </div>
+			<!-- animations effects -->
+			<div class="icon-effects-w3l">
+				<img src="/static/images/shape1.png" alt="" class="img-fluid shape-wthree shape-w3-one">
+				<img src="/static/images/shape2.png" alt="" class="img-fluid shape-wthree shape-w3-two">
+				<img src="/static/images/shape3.png" alt="" class="img-fluid shape-wthree shape-w3-three">
+				<img src="/static/images/shape5.png" alt="" class="img-fluid shape-wthree shape-w3-four">
+				<img src="/static/images/shape4.png" alt="" class="img-fluid shape-wthree shape-w3-five">
+				<img src="/static/images/shape6.png" alt="" class="img-fluid shape-wthree shape-w3-six">
+			</div>
+			<!-- //animations effects -->
+		</div>
+		<!-- //banner -->
+	</div>
+	<!-- //main banner -->
+</body>
+</html>

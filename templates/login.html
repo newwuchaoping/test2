@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+		<meta charset="utf-8">
+		<link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</head>
+<body>
+	 <!-----start-main---->
+	 <div class="main">
+		<div class="login-form">
+			<h1>账号登录</h1>
+					<div class="head">
+						<img src="/static/images/user.png" alt=""/>
+					</div>
+				<form action="{% url 'login' %}" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group marb40 {% if login_form.errors.username %} errorput {% endif %}">
+                        <label>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</label>
+                        <input name="username" id="account_l" type="text" placeholder="账号" />
+                    </div>
+                    <div class="form-group marb8 {% if login_form.errors.password %} errorput {% endif %}">
+                        <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                        <input name="password" id="password_l" type="password" placeholder="请输入您的密码" />
+                    </div>
+                    <label>验证码</label>{{ login_form.captcha }}
+                    <div class="error btns login-form-tips" id="jsLoginTips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
+                     <div class="auto-box marb38">
+                     </div>
+                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />
+                    {% csrf_token %}
+                </form>
+
+        <p class="form-p">没有账号？<a href="{% url 'register' %}">[立即注册]</a></p>
+			</div>
+			<!--//End-login-form-->
+			 <!-----start-copyright---->
+         <div class="copy-right">
+                        <p>Copyright &copy; 2014.Company name All rights reserved.</p>
+					</div>
+				<!-----//end-copyright---->
+		</div>
+			 <!-----//end-main---->
+		 		
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>

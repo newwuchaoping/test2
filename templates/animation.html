@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zxx">
+
+<head>
+    <title>考试成绩</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="/static/css/style2.css" type="text/css" media="all"/>
+    <!-- Style-CSS -->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+
+    <!-- Web-Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+          rel="stylesheet">
+    <!-- //Web-Fonts -->
+</head>
+<!-- main banner -->
+<div class="main-top" id="home">
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
+                <!-- logo -->
+                <div id="logo">
+                    <h1><a href="index.html"><span class="fa fa-linode mr-2"></span>Learning analysis</a></h1>
+                </div>
+                <!-- //logo -->
+                <!-- nav -->
+                <div class="nav_w3ls">
+                    <nav>
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop"/>
+                        <ul class="menu">
+                            <li><a href="{% url 'index' %}">首页</a></li>
+                            <li><a href="{% url 'user_center' %}">个人中心</a></li>
+                            <li><a href="/paperlist/">试卷列表</a></li>
+                            <li>
+                                <!-- First Tier Drop Down -->
+                                <label for="drop-2" class="toggle toogle-2">错题分析<span class="fa fa-angle-down"
+                                                                                      aria-hidden="true"></span>
+                                </label>
+                                <a href="#">错题分析<span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-2"/>
+                                <ul>
+                                    <li><a href="#services" class="drop-text">错题库</a></li>
+                                    <li><a href="/animation/"  class="active">资源推荐</a></li>
+                                    <li><a href="404.html" class="drop-text">温故知新</a></li>
+                                    <li><a href="#stats" class="drop-text">阶段测试</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'history' %}">历史成绩</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header></div>
+<body>
+<div class="main_banner">
+	<div class="main_banner_wrap">
+		<canvas id="myCanvas" width="150" height="150"></canvas>
+		<div class="main_banner_box" id="m_box">
+			<a href="javascript:void(0)" class="banner_btn js_pre">
+				<span class="banner_btn_arrow"><i></i></span>
+			</a>
+			<a href="javascript:void(0)" class="banner_btn btn_next js_next">
+				<span class="banner_btn_arrow"><i></i></span>
+            </a>
+			<ul>
+                {% for preview in previews %}
+                    <li id="imgCard{{ forloop.counter0 }}">
+					<a href=""><span style="opacity:0;"></span></a>
+					<img src="/media/{{ preview.logo }}" alt="">
+					<p style="bottom:0">{{ preview.title }}</p>
+				</li>
+                {% endfor %}
+			</ul>
+			<!--火狐倒影图层-->
+			<p id="rflt"></p>
+			<!--火狐倒影图层-->
+		</div>
+		<!--序列号按钮-->
+		<div class="btn_list">
+			<span class="curr"></span><span></span><span></span><span></span><span></span>
+		</div>
+	</div>
+
+</div>
+<!--轮播图 结束 -->
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>考试成绩</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="/static/css/style2.css" type="text/css" media="all"/>
+    <!-- Style-CSS -->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+
+    <!-- Web-Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+          rel="stylesheet">
+    <!-- //Web-Fonts -->
+</head>
+
+<body>
+<!-- main banner -->
+<div class="main-top" id="home">
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
+                <!-- logo -->
+                <div id="logo">
+                    <h1><a href="index.html"><span class="fa fa-linode mr-2"></span>Learning analysis</a></h1>
+                </div>
+                <!-- //logo -->
+                <!-- nav -->
+                <div class="nav_w3ls">
+                    <nav>
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop"/>
+                        <ul class="menu">
+                            <li><a href="{% url 'index' %}">首页</a></li>
+                            <li><a href="{% url 'user_center' %}">个人中心</a></li>
+                            <li><a href="/paperlist/" class="active">试卷列表</a></li>
+                            <li>
+                                <!-- First Tier Drop Down -->
+                                <label for="drop-2" class="toggle toogle-2">错题分析<span class="fa fa-angle-down"
+                                                                                      aria-hidden="true"></span>
+                                </label>
+                                <a href="#">错题分析<span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-2"/>
+                                <ul>
+                                    <li><a href="#services" class="drop-text">错题库</a></li>
+                                    <li><a href="/animation/" class="drop-text">资源推荐</a></li>
+                                    <li><a href="404.html" class="drop-text">温故知新</a></li>
+                                    <li><a href="#stats" class="drop-text">阶段测试</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'history' %}">历史成绩</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+<div id="mydef">
+    <p class="score">你的成绩为: {{ score }}。</p>
+
+</div>
+    {% if wrong_question_count == 0 %}
+        <div id="mydef">
+        <p class="score">恭喜你全对!</p>
+</div>
+
+    {% else %}
+         <p class="score">下面是你的错题：</p>
+                  {% for wrong_question_now in wrong_question %}
+
+                    <div id="box1">
+                        {% if wrong_question_now.questionType == 'xz' %}
+                        <from id="{{ wrong_question_now.id }}">
+
+                            <p>{{ forloop.counter }}.({{ "选择" }}) {{ wrong_question_now.content }}正确答案({{ wrong_question_now.answer }})</p>
+                            <input type="hidden" value="{{ wrong_question_now.id }}">
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="A"/>{{ wrong_question_now.choice_a }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="B"/>{{ wrong_question_now.choice_b }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="C"/>{{wrong_question_now.choice_c }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="D"/>{{ wrong_question_now.choice_d }}
+                            </label><br/>
+                            <label>解析：<br/>
+                                &nbsp;&nbsp;{{  wrong_question_now.jiexi }}
+                            </label>
+                        </from>
+                        {% endif %}
+                        {% if wrong_question_now.questionType == 'mxz' %}
+                        <from id="{{ wrong_question_now.id }}" >
+
+                            <p>{{ forloop.counter }}.({{ "多选" }}) {{ wrong_question_now.content }}正确答案({{ wrong_question_now.answer }})</p>
+                            <input type="hidden" value="{{ wrong_question_now.id }}">
+                            <label><input name="{{ wrong_question_now.id }}_1" type="checkbox"
+                                          value="A" />{{ wrong_question_now.choice_a }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}_2" type="checkbox"
+                                          value="B"/>{{ wrong_question_now.choice_b }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}_3" type="checkbox"
+                                          value="C" />{{ wrong_question_now.choice_c }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}_4" type="checkbox"
+                                          value="D" />{{ wrong_question_now.choice_d }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}_5" type="checkbox"
+                                          value="E" />{{ wrong_question_now.choice_e }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}_6" type="checkbox"
+                                          value="F"/>{{ wrong_question_now.choice_f }}
+                            </label><br/>
+                        </from>
+                        {% endif %}
+                        {% if wrong_question_now.questionType == 'pd' %}
+                        <from id="{{ wrong_question_now.id }}">
+
+                            <p>{{ forloop.counter }}.({{ "判断"  }}) {{ wrong_question_now.content }}正确答案({{ wrong_question_now.answer }})</p>
+                            <input type="hidden" value="{{ wrong_question_now.id }}">
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="True"/>{{ wrong_question_now.boolt }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="False"/>{{ wrong_question_now.boolf }}
+                            </label><br/>
+                        </from>
+                        {% endif %}
+                            </div>
+
+                    <hr/>
+                {% endfor %}
+            {% endif %}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>{{ title }}</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="/static/css/style2.css" type="text/css" media="all"/>
+    <!-- Style-CSS -->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+
+    <!-- Web-Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+          rel="stylesheet">
+    <!-- //Web-Fonts -->
+</head>
+
+<body>
+<!-- main banner -->
+<div class="main-top" id="home">
+    <!-- header -->
+    <header>
+        <div class="container-fluid">
+            <div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
+                <!-- logo -->
+                <div id="logo">
+                    <h1><a href="index.html"><span class="fa fa-linode mr-2"></span>Learning analysis</a></h1>
+                </div>
+                <!-- //logo -->
+                <!-- nav -->
+                <div class="nav_w3ls">
+                    <nav>
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop"/>
+                        <ul class="menu">
+                            <li><a href="{% url 'index' %}">首页</a></li>
+                            <li><a href="{% url 'user_center' %}">个人中心</a></li>
+                            <li><a href="/paperlist/" >试卷列表</a></li>
+                            <li>
+                                <!-- First Tier Drop Down -->
+                                <label for="drop-2" class="toggle toogle-2">错题分析<span class="fa fa-angle-down"
+                                                                                      aria-hidden="true"></span>
+                                </label>
+                                <a href="#">错题分析<span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-2"/>
+                                <ul>
+                                    <li><a href="#services" class="drop-text">错题库</a></li>
+                                    <li><a href="/animation/" class="drop-text">资源推荐</a></li>
+                                    <li><a href="404.html" class="drop-text">温故知新</a></li>
+                                    <li><a href="#stats" class="drop-text">阶段测试</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'history' %}"class="active">历史成绩</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main content --><br/>
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">历史成绩</h3>
+        </div><br/>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="assets_table" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>序号</th>
+              <th>姓名</th>
+              <th>单位</th>
+                <th>年级</th>
+                <th>科目</th>
+                <th>试卷名</th>
+              <th>成绩</th>
+              <th>考试时间</th>
+                <th>查看记录</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for his in hiss %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ his.user.nickname }}</td>
+                   <td>{{ his.user.get_danwei_display}}</td>
+                     <td>{{ his.user.get_nianji_display }}</td>
+                    <td>{{ his.paper.course }}</td>
+                <td>{{ his.paper.name }}</td>
+                  <td>{{ his.total }}</td>
+                  <td>{{ his.add_time }}</td>
+                <td><a href="{% url 'jiexi' his.paper.id %}">点击查看</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
